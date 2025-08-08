@@ -18,7 +18,6 @@ import {
   FolderOpen,
   MoreVertical,
   Edit,
-  Trash2,
   Eye,
   Star,
   TrendingUp

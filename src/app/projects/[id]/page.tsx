@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useParams } from 'next/navigation'
 import { DashboardLayout } from "@/components/layout/DashboardLayout"
 import { sanitizeText } from "@/lib/utils"
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
@@ -29,16 +30,13 @@ import {
   Grid3X3
 } from "lucide-react"
 
-interface PageProps {
-  params: { id: string }
-}
-
-export default function ProjectDetailPage({ params }: PageProps) {
+export default function ProjectDetailPage() {
+  const params = useParams<{ id: string }>()
   const [activeTab, setActiveTab] = useState<'overview' | 'files' | 'timeline' | 'comments'>('overview')
   const [viewerMode, setViewerMode] = useState<'2d' | '3d' | 'vr'>('3d')
   
   // Mock project data - in real app, fetch by params.id
-  const project = mockProjects[0]
+  const project = mockProjects.find(p => p.id === params.id) || mockProjects[0]
 
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -176,7 +174,7 @@ export default function ProjectDetailPage({ params }: PageProps) {
                     {['overview', 'files', 'timeline', 'comments'].map((tab) => (
                       <button
                         key={tab}
-                        onClick={() => setActiveTab(tab as any)}
+                        onClick={() => setActiveTab(tab as 'overview' | 'files' | 'timeline' | 'comments')}
                         className={`px-3 py-1 text-sm font-medium rounded-lg ${
                           activeTab === tab 
                             ? 'bg-blue-100 text-blue-700' 

@@ -3,7 +3,6 @@
 import { useState } from 'react'
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
 import {
   ArrowRight,
   Play,
@@ -13,7 +12,6 @@ import {
   Palette,
   Zap,
   Clock,
-  DollarSign,
   Users,
   Award,
   ChevronLeft,
@@ -21,7 +19,6 @@ import {
   Menu,
   X,
   Sparkles,
-  TrendingUp,
   Shield,
   Headphones
 } from "lucide-react"
@@ -468,7 +465,7 @@ export default function LandingPage() {
           </h2>
           
           <p className="text-xl mb-8 opacity-90">
-            Join 500+ architects and developers who've increased their project approval rates by 300%
+            Join 500+ architects and developers who&apos;ve increased their project approval rates by 300%
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">

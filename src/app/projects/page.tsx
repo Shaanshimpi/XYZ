@@ -2,14 +2,13 @@
 
 import { useState } from 'react'
 import { DashboardLayout } from "@/components/layout/DashboardLayout"
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
+import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { mockProjects } from "@/lib/mock-data"
 import {
   Building2,
   Search,
-  Filter,
   Plus,
   Eye,
   Edit,
@@ -20,7 +19,6 @@ import {
   MoreVertical,
   Grid3X3,
   List,
-  Upload,
   Play
 } from "lucide-react"
 
