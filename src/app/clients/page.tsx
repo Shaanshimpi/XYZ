@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { DashboardLayout } from "@/components/layout/DashboardLayout"
+import { sanitizeText } from "@/lib/utils"
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -158,7 +159,9 @@ export default function ClientsPage() {
                       {client.name.charAt(0)}
                     </div>
                     <div>
-                      <h3 className="font-semibold text-gray-900">{client.name}</h3>
+                      <h3 className="font-semibold text-gray-900">
+                        <span dangerouslySetInnerHTML={{ __html: sanitizeText(client.name) }} />
+                      </h3>
                       <p className="text-sm text-gray-600">{client.company}</p>
                     </div>
                   </div>
@@ -289,7 +292,9 @@ export default function ClientsPage() {
                   {client.name.charAt(0)}
                 </div>
                 <div className="flex-1">
-                  <p className="text-sm font-medium text-gray-900">{client.name}</p>
+                  <p className="text-sm font-medium text-gray-900">
+                    <span dangerouslySetInnerHTML={{ __html: sanitizeText(client.name) }} />
+                  </p>
                   <p className="text-xs text-gray-500">
                     Last active: {new Date(client.joinedAt).toLocaleDateString()}
                   </p>

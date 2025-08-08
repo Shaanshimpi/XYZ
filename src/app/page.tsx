@@ -1,6 +1,7 @@
 'use client'
 
 import { DashboardLayout } from "@/components/layout/DashboardLayout"
+import { sanitizeText } from "@/lib/utils"
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { mockProjects, mockActivities, mockAnalytics } from "@/lib/mock-data"
@@ -174,7 +175,9 @@ export default function Dashboard() {
                         {activity.type === 'comment_added' && <AlertCircle className="w-4 h-4 text-yellow-600" />}
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p className="text-sm text-gray-900">{activity.message}</p>
+                        <p className="text-sm text-gray-900">
+                          <span dangerouslySetInnerHTML={{ __html: sanitizeText(activity.message) }} />
+                        </p>
                         <p className="text-xs text-gray-500 mt-1">
                           {activity.user} • {new Date(activity.timestamp).toLocaleDateString()}
                         </p>

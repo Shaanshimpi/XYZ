@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { DashboardLayout } from "@/components/layout/DashboardLayout"
+import { sanitizeText } from "@/lib/utils"
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { mockProjects } from "@/lib/mock-data"
@@ -193,7 +194,9 @@ export default function ProjectDetailPage({ params }: PageProps) {
                   <div className="space-y-4">
                     <div>
                       <h4 className="font-medium text-gray-900 mb-2">Description</h4>
-                      <p className="text-gray-600">{project.description}</p>
+                      <p className="text-gray-600">
+                        <span dangerouslySetInnerHTML={{ __html: sanitizeText(project.description) }} />
+                      </p>
                     </div>
                     
                     <div className="grid grid-cols-2 gap-4">

@@ -26,6 +26,7 @@ import {
   Headphones
 } from "lucide-react"
 import Link from 'next/link'
+import { sanitizeText } from '@/lib/utils'
 
 export default function LandingPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -36,7 +37,7 @@ export default function LandingPage() {
       name: "Sarah Johnson",
       role: "Principal Architect",
       company: "Johnson Architecture",
-      content: "ArchViz Pro transformed how we present to clients. Our project approval rate increased by 300% since we started using their 3D visualizations. The quality is absolutely stunning.",
+      content: "XYZ transformed how we present to clients. Our project approval rate increased by 300% since we started using their 3D visualizations. The quality is absolutely stunning.",
       rating: 5,
       image: "/api/placeholder/80/80",
       project: "Modern Villa Complex"
@@ -96,7 +97,7 @@ export default function LandingPage() {
                 <Building2 className="w-6 h-6 text-white" />
               </div>
               <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                ArchViz Pro
+                XYZ
               </span>
             </div>
             
@@ -359,7 +360,9 @@ export default function LandingPage() {
                 
                 <div>
                   <h3 className="text-xl font-bold text-gray-900 mb-2">{project.title}</h3>
-                  <p className="text-gray-600">{project.description}</p>
+                  <p className="text-gray-600">
+                    <span dangerouslySetInnerHTML={{ __html: sanitizeText(project.description) }} />
+                  </p>
                 </div>
               </div>
             ))}
@@ -402,7 +405,7 @@ export default function LandingPage() {
               </div>
               
               <blockquote className="text-xl lg:text-2xl font-medium mb-8 leading-relaxed">
-                "{testimonials[currentTestimonial].content}"
+                <span dangerouslySetInnerHTML={{ __html: `"${sanitizeText(testimonials[currentTestimonial].content)}"` }} />
               </blockquote>
               
               <div className="flex items-center justify-center space-x-4">
@@ -410,9 +413,15 @@ export default function LandingPage() {
                   <Users className="w-8 h-8 text-white" />
                 </div>
                 <div className="text-left">
-                  <div className="font-semibold text-lg">{testimonials[currentTestimonial].name}</div>
-                  <div className="opacity-80">{testimonials[currentTestimonial].role}</div>
-                  <div className="opacity-70 text-sm">{testimonials[currentTestimonial].company}</div>
+                  <div className="font-semibold text-lg">
+                    <span dangerouslySetInnerHTML={{ __html: sanitizeText(testimonials[currentTestimonial].name) }} />
+                  </div>
+                  <div className="opacity-80">
+                    <span dangerouslySetInnerHTML={{ __html: sanitizeText(testimonials[currentTestimonial].role) }} />
+                  </div>
+                  <div className="opacity-70 text-sm">
+                    <span dangerouslySetInnerHTML={{ __html: sanitizeText(testimonials[currentTestimonial].company) }} />
+                  </div>
                 </div>
               </div>
             </Card>
